@@ -28,7 +28,7 @@ int main()
 	int i, list1[N], list2[N];
 	
 	for (i=0; i<N; i++)
-		list1[i] = rand();
+		list1[i] = rand()%1000000;
 	
 	/* calling menu function and
 	 choosing a sorting technique */
