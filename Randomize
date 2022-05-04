@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define N 3
+#define STRING_SIZE 50
+
+struct regi
+{
+	int a;
+	char z[STRING_SIZE];
+	char x[STRING_SIZE];
+	char c[STRING_SIZE];
+};
+
+
+int main()
+{
+	srand(time(NULL));
+	struct regi *flag;	
+	int i;
+	
+	FILE *fptr;
+	// Open file where i'll write
+	fptr = fopen("random.txt", "w");
+	if(fptr == NULL){
+      printf("Error opening file!");   
+      exit(1);             
+    }
+	
+	// Δυναμική δέσμευση πίνακα
+	flag = malloc(sizeof(struct regi)*150);
+	if (!flag){
+		printf("Error allocating memory!");
+		exit(1);
+	}
+	
+	// Make 100 random εγγραφές
+	fflush(stdin);
+	for (i=0; i<N; i++){
+		printf("in ");
+		flag[i].a = rand()%100;   
+		gets(flag[i].z);
+		gets(flag[i].x);
+		gets(flag[i].c);
+	}
+	
+	for (i=0; i<N; i++){
+		fprintf(fptr, "\n%d %s %s %s", flag[i].a, flag[i].z, flag[i].x, flag[i].c);
+	}
+	
+	
+	fclose(fptr);
+	return 0;
+}
